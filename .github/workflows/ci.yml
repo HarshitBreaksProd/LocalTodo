@@ -13,4 +13,4 @@ jobs:
           mkdir ~/.ssh
           echo "${{ secrets.KNOWN_HOSTS }}" &> ~/.ssh/known_hosts
           chmod 700 ~/ssh_key
-          ssh -i ~/ssh_key ubuntu@${{ secrets.ORACLE_SSH_IP }} -t "cd LocalTodo && git pull && pnpm install && pnpm build && pm2 restart all"
+          ssh -i ~/ssh_key ubuntu@${{ secrets.ORACLE_SSH_IP }} -t "cd LocalTodo && git pull && source ~/.bashrc && pnpm install && pnpm build && pm2 restart all"
