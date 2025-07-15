@@ -17,6 +17,16 @@ type Task = {
   completedAt: number | null;
 };
 
+// Interface for tasks stored in localStorage
+// This allows for potentially missing fields in older stored data
+interface StoredTask {
+  id: number;
+  text: string;
+  completed: boolean;
+  createdAt?: number;
+  completedAt?: number | null;
+}
+
 const formatTimestamp = (timestamp: number) => {
   return new Date(timestamp).toLocaleString("en-US", {
     month: "short",
@@ -63,7 +73,7 @@ export default function Home() {
     try {
       const storedTasks = localStorage.getItem("tasks");
       if (storedTasks) {
-        const tasksFromStorage: any[] = JSON.parse(storedTasks);
+        const tasksFromStorage: StoredTask[] = JSON.parse(storedTasks);
         const migratedTasks = tasksFromStorage.map((task) => ({
           ...task,
           createdAt: task.createdAt || Date.now(),
