@@ -10,7 +10,7 @@ jobs:
     steps:
       - run: |
           echo "${{ secrets.ORACLE_SSH_PVT_KEY }}" &> ~/ssh_key
-          mkdir .ssh
+          mkdir ~/.ssh
           echo "${{ secrets.KNOWN_HOSTS }}" &> ~/.ssh/known_hosts
           ssh -i ~/ssh_key ubuntu@${{ secrets.ORACLE_SSH_IP }}
           cd LocalTodo && git pull && pnpm install && pnpm build
