@@ -13,4 +13,4 @@ jobs:
           mkdir ~/.ssh
           echo "${{ secrets.KNOWN_HOSTS }}" &> ~/.ssh/known_hosts
           chmod 700 ~/ssh_key
-          ssh -i ~/ssh_key ubuntu@${{ secrets.ORACLE_SSH_IP }} -t "cd LocalTodo && git pull && source export PATH=/home/ubuntu/.nvm/versions/node/v24.4.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin && pnpm install && pnpm build && pm2 restart all"
+          ssh -i ~/ssh_key ubuntu@${{ secrets.ORACLE_SSH_IP }} -t "cd LocalTodo && git pull && export PATH=/home/ubuntu/.nvm/versions/node/v24.4.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin && pnpm install && pnpm build && pm2 restart all"
